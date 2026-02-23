@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fondations Empire — Bâtisseurs de l'Essentiel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0d0d;
+      --dark: #141414;
+      --card: #1a1a1a;
+      --border: rgba(255,255,255,0.06);
+      --gold: #c9a84c;
+      --gold-light: #e4c576;
+      --gold-muted: rgba(201, 168, 76, 0.15);
+      --white: #f4f0e8;
+      --grey: #7a7a7a;
+      --text: #d4cfc5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.95), transparent);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.3s, color 0.3s;
+    }
+
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.6rem 1.4rem;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 4rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 380px;
+      color: var(--grey);
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      font-weight: 500;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-ghost {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    .btn-ghost:hover { opacity: 1; }
+
+    .btn-ghost::after {
+      content: '→';
+      font-size: 1rem;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img-wrap {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1e1a10 0%, #0d0d0d 100%);
+    }
+
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 40%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 60px,
+          rgba(201,168,76,0.03) 60px,
+          rgba(201,168,76,0.03) 61px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(201,168,76,0.03) 60px,
+          rgba(201,168,76,0.03) 61px
+        );
+    }
+
+    .hero-img-wrap::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 120px;
+      background: linear-gradient(to right, var(--black), transparent);
+    }
+
+    /* Big decorative number */
+    .hero-number {
+      position: absolute;
+      bottom: -0.1em;
+      right: -0.05em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28vw;
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.08);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Building silhouette SVG */
+    .hero-silhouette {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      opacity: 0.06;
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 3rem;
+      bottom: 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      z-index: 2;
+    }
+
+    .stat-item { text-align: right; }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 0.3rem;
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.3;
+      animation: bobUp 2s ease-in-out infinite;
+    }
+
+    .scroll-hint span {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    @keyframes bobUp {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--dark);
+      overflow: hidden;
+      padding: 1rem 0;
+      display: flex;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-item {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--grey);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .marquee-item::after {
+      content: '◆';
+      color: var(--gold);
+      font-size: 0.4rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 8rem 4rem; }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+    }
+
+    h2 em { font-style: italic; color: var(--gold); }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+      background: var(--dark);
+    }
+
+    .about-visual {
+      position: relative;
+      height: 600px;
+    }
+
+    .about-img-main {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1a180f 0%, #111 100%);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .about-img-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 60%, rgba(201,168,76,0.07) 0%, transparent 60%);
+    }
+
+    /* Decorative diagonal lines */
+    .about-img-main::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 60%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        rgba(201,168,76,0.025) 20px,
+        rgba(201,168,76,0.025) 21px
+      );
+    }
+
+    .about-img-accent {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      width: 45%;
+      height: 45%;
+      background: var(--gold-muted);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-badge {
+      text-align: center;
+    }
+
+    .about-badge .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .about-badge .small {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-top: 0.3rem;
+    }
+
+    .about-content { }
+
+    .about-text {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: var(--grey);
+      margin: 2rem 0;
+    }
+
+    .about-pillars {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .pillar {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      flex: 1;
+    }
+
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.75rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      background: var(--black);
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .service-card {
+      background: var(--dark);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--gold);
+      transition: width 0.5s ease;
+    }
+
+    .service-card:hover::before { width: 100%; }
+    .service-card:hover { background: #1c1c1c; }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.15);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+    }
+
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .service-desc {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--grey);
+    }
+
+    .service-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .service-card:hover .service-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── PROJECTS ── */
+    .projects {
+      background: var(--dark);
+      padding: 8rem 0;
+    }
+
+    .projects-header {
+      padding: 0 4rem;
+      margin-bottom: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .projects-scroll {
+      display: flex;
+      gap: 2rem;
+      padding: 0 4rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .projects-scroll::-webkit-scrollbar { display: none; }
+
+    .project-card {
+      flex: 0 0 400px;
+      height: 520px;
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .project-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-bg { transform: scale(1.05); }
+
+    .project-bg.p1 {
+      background: linear-gradient(160deg, #1a1510 0%, #0d0d0d 100%);
+    }
+    .project-bg.p2 {
+      background: linear-gradient(200deg, #101518 0%, #0d0d0d 100%);
+    }
+    .project-bg.p3 {
+      background: linear-gradient(140deg, #150f0f 0%, #0d0d0d 100%);
+    }
+
+    .project-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    .project-bg.p1::before {
+      background: radial-gradient(ellipse at 60% 30%, rgba(201,168,76,0.1) 0%, transparent 60%);
+    }
+    .project-bg.p2::before {
+      background: radial-gradient(ellipse at 30% 70%, rgba(76,130,201,0.05) 0%, transparent 60%);
+    }
+    .project-bg.p3::before {
+      background: radial-gradient(ellipse at 70% 60%, rgba(201,168,76,0.07) 0%, transparent 60%);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.95) 0%, transparent 60%);
+    }
+
+    .project-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2.5rem;
+    }
+
+    .project-cat {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-loc {
+      font-size: 0.75rem;
+      color: var(--grey);
+    }
+
+    .project-tag {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      background: var(--gold-muted);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.8rem;
+    }
+
+    /* ── PROCESS ── */
+    .process {
+      background: var(--black);
+    }
+
+    .process-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 6rem;
+    }
+
+    .process-header .section-label { justify-content: center; }
+    .process-header .section-label::before { display: none; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), var(--gold), transparent);
+      opacity: 0.2;
+    }
+
+    .step {
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .step-dot {
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      position: relative;
+      background: var(--black);
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .step-desc {
+      font-size: 0.78rem;
+      line-height: 1.8;
+      color: var(--grey);
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      padding: 7rem 4rem;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: 'EMPIRE';
+      position: absolute;
+      left: -0.05em;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20vw;
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.04);
+      pointer-events: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .cta-text { position: relative; z-index: 1; }
+
+    .cta-text h2 { max-width: 600px; }
+
+    .cta-action { position: relative; z-index: 1; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 5rem 4rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: var(--grey);
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+      opacity: 0.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+
+    .footer-col a {
+      color: var(--grey);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-size: 0.7rem;
+      color: var(--grey);
+      opacity: 0.5;
+    }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 1.5rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { min-height: 100vh; }
+      .about { grid-template-columns: 1fr; }
+      .about-visual { height: 300px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+      .steps::before { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .cta-band { flex-direction: column; text-align: center; }
+      section { padding: 5rem 2rem; }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .about-pillars { flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 2rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Fondations<br>Empire</div>
+    <ul class="nav-links">
+      <li><a href="#">À propos</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Réalisations</a></li>
+      <li><a href="#">Expertise</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Nous contacter</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Depuis 1998 · Montréal, QC</div>
+      <h1>Bâtisseurs<br>de <em>l'Essentiel</em></h1>
+      <p class="hero-desc">
+        Experts en fondations résidentielles et commerciales, nous posons les bases solides sur lesquelles se construisent les projets qui durent.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Nos Services</a>
+        <a href="#projects" class="btn-ghost">Voir les réalisations</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-wrap">
+        <div class="hero-number">E</div>
+        <svg class="hero-silhouette" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="100" y="200" width="200" height="200" fill="white"/>
+          <rect x="320" y="100" width="160" height="300" fill="white"/>
+          <rect x="500" y="150" width="200" height="250" fill="white"/>
+          <rect x="0" y="395" width="800" height="5" fill="white"/>
+        </svg>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">+2500</div>
+          <div class="stat-label">Projets réalisés</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">25</div>
+          <div class="stat-label">Années d'expertise</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Satisfaction client</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>Défiler</span></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <div class="marquee-item">Fondations résidentielles</div>
+      <div class="marquee-item">Micropieux</div>
+      <div class="marquee-item">Pyrite & Pyrrhotite</div>
+      <div class="marquee-item">Imperméabilisation</div>
+      <div class="marquee-item">Drain français</div>
+      <div class="marquee-item">Injections de résine</div>
+      <div class="marquee-item">Excavation</div>
+      <div class="marquee-item">Fondations commerciales</div>
+      <div class="marquee-item">Fondations résidentielles</div>
+      <div class="marquee-item">Micropieux</div>
+      <div class="marquee-item">Pyrite & Pyrrhotite</div>
+      <div class="marquee-item">Imperméabilisation</div>
+      <div class="marquee-item">Drain français</div>
+      <div class="marquee-item">Injections de résine</div>
+      <div class="marquee-item">Excavation</div>
+      <div class="marquee-item">Fondations commerciales</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-visual reveal">
+      <div class="about-img-main"></div>
+      <div class="about-img-accent">
+        <div class="about-badge">
+          <div class="big">25+</div>
+          <div class="small">Ans d'expérience</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <div class="section-label">Notre Histoire</div>
+      <h2>L'excellence au<br><em>cœur de nos</em><br>fondations</h2>
+      <p class="about-text">
+        Fondations Empire est une entreprise familiale fondée à Montréal avec une mission claire : offrir des solutions de fondations durables, professionnelles et adaptées à chaque réalité. Nous intervenons sur tous types de bâtiments, du résidentiel au commercial.
+      </p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-title">Expertise</div>
+          <div class="pillar-desc">Techniciens certifiés avec des décennies de terrain.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Fiabilité</div>
+          <div class="pillar-desc">Respect des délais et transparence totale.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-title">Innovation</div>
+          <div class="pillar-desc">Technologies modernes pour des résultats optimaux.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header reveal">
+      <div>
+        <div class="section-label">Notre Expertise</div>
+        <h2>Ce que nous<br><em>maîtrisons</em></h2>
+      </div>
+      <a href="#" class="btn-ghost" style="color: var(--gold); opacity:0.8;">Tous les services</a>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">Réparation de Fondations</div>
+        <p class="service-desc">Diagnostic, renforcement et réparation complète de fondations fissurées, affaissées ou endommagées par l'humidité ou le sol.</p>
+        <span class="service-arrow">Découvrir →</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Imperméabilisation</div>
+        <p class="service-desc">Solutions complètes d'imperméabilisation intérieure et extérieure pour protéger durablement vos sous-sols contre les infiltrations d'eau.</p>
+        <span class="service-arrow">Découvrir →</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Micropieux & Béton</div>
+        <p class="service-desc">Installation de micropieux pour stabiliser et renforcer les structures existantes sur des terrains à faible capacité portante.</p>
+        <span class="service-arrow">Découvrir →</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">Traitement Pyrite</div>
+        <p class="service-desc">Expertise reconnue dans l'identification et le traitement des dallages affectés par la pyrite et la pyrrhotite.</p>
+        <span class="service-arrow">Découvrir →</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-title">Drain Français</div>
+        <p class="service-desc">Installation et remplacement de drains français pour une gestion optimale des eaux souterraines autour de votre propriété.</p>
+        <span class="service-arrow">Découvrir →</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-title">Injections de Résine</div>
+        <p class="service-desc">Technique innovante d'injection de résine expansive pour le nivellement et la stabilisation des dalles et structures affaissées.</p>
+        <span class="service-arrow">Découvrir →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <div class="projects" id="projects">
+    <div class="projects-header reveal">
+      <div>
+        <div class="section-label">Réalisations</div>
+        <h2>Projets récents</h2>
+      </div>
+      <a href="#" class="btn-ghost" style="color: var(--gold); opacity:0.8;">Voir tout</a>
+    </div>
+    <div class="projects-scroll reveal">
+      <div class="project-card">
+        <div class="project-bg p1"></div>
+        <div class="project-overlay"></div>
+        <span class="project-tag">Résidentiel</span>
+        <div class="project-content">
+          <div class="project-cat">Réparation & Imperméabilisation</div>
+          <div class="project-title">Maison Rosemont</div>
+          <div class="project-loc">Montréal, Québec · 2024</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-bg p2"></div>
+        <div class="project-overlay"></div>
+        <span class="project-tag">Commercial</span>
+        <div class="project-content">
+          <div class="project-cat">Micropieux · Dalle industrielle</div>
+          <div class="project-title">Entrepôt Laval</div>
+          <div class="project-loc">Laval, Québec · 2024</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-bg p3"></div>
+        <div class="project-overlay"></div>
+        <span class="project-tag">Résidentiel</span>
+        <div class="project-content">
+          <div class="project-cat">Traitement Pyrite</div>
+          <div class="project-title">Résidence Brossard</div>
+          <div class="project-loc">Brossard, Québec · 2023</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-bg p1"></div>
+        <div class="project-overlay"></div>
+        <span class="project-tag">Multi-logements</span>
+        <div class="project-content">
+          <div class="project-cat">Drain français · Imperméabilisation</div>
+          <div class="project-title">Immeuble Longueuil</div>
+          <div class="project-loc">Longueuil, Québec · 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="process-header reveal">
+      <div class="section-label">Notre Approche</div>
+      <h2>Un processus <em>rigoureux</em></h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-dot">01</div>
+        <div class="step-title">Évaluation</div>
+        <p class="step-desc">Inspection complète et diagnostic précis de vos fondations par nos techniciens certifiés.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">02</div>
+        <div class="step-title">Proposition</div>
+        <p class="step-desc">Plan d'intervention détaillé, devis transparent et choix des meilleures solutions techniques.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">03</div>
+        <div class="step-title">Réalisation</div>
+        <p class="step-desc">Exécution par nos équipes spécialisées dans le respect des délais et des standards de qualité.</p>
+      </div>
+      <div class="step">
+        <div class="step-dot">04</div>
+        <div class="step-title">Garantie</div>
+        <p class="step-desc">Suivi post-travaux et garantie écrite sur l'ensemble de nos interventions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band" id="contact">
+    <div class="cta-text reveal">
+      <div class="section-label">Prêt à commencer ?</div>
+      <h2>Votre projet mérite<br>des <em>fondations solides</em></h2>
+    </div>
+    <div class="cta-action reveal">
+      <a href="tel:+15141234567" class="btn-primary" style="display:block; text-align:center; margin-bottom:1rem;">
+        Obtenir une soumission
+      </a>
+      <p style="font-size:0.7rem; color: var(--grey); text-align:center; letter-spacing:0.1em;">
+        Réponse sous 24h · Évaluation gratuite
+      </p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand-name">Fondations<br>Empire</div>
+        <p>Experts en fondations résidentielles et commerciales depuis 1998. Basés à Montréal, nous intervenons partout au Québec.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Réparation fondations</a></li>
+          <li><a href="#">Imperméabilisation</a></li>
+          <li><a href="#">Micropieux</a></li>
+          <li><a href="#">Traitement Pyrite</a></li>
+          <li><a href="#">Drain français</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Réalisations</a></li>
+          <li><a href="#">Témoignages</a></li>
+          <li><a href="#">Certifications</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">Montréal, Québec</a></li>
+          <li><a href="tel:+15141234567">514 123-4567</a></li>
+          <li><a href="mailto:info@fondationsempire.com">info@fondationsempire.com</a></li>
+          <li><a href="#">Devis gratuit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Fondations Empire. Tous droits réservés.</p>
+      <p>Licence RBQ · Membre APCHQ</p>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => io.observe(el));
+
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.style.background = 'rgba(13,13,13,0.97)';
+      } else {
+        nav.style.background = 'linear-gradient(to bottom, rgba(13,13,13,0.95), transparent)';
+      }
+    });
+  </script>
+</body>
+</html>
