@@ -660,11 +660,12 @@
 
     .service-card {
       background: var(--dark);
-      padding: 3rem 2.5rem;
       position: relative;
       overflow: hidden;
       transition: background 0.4s;
       cursor: default;
+      display: flex;
+      flex-direction: column;
     }
 
     .service-card::before {
@@ -675,59 +676,61 @@
       width: 0;
       background: var(--gold);
       transition: width 0.5s ease;
+      z-index: 2;
     }
 
     .service-card:hover::before { width: 100%; }
     .service-card:hover { background: #e8e8e8; }
 
-    .service-num {
-      font-family: 'Barlow', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 300;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(184,146,46,0.20);
-      line-height: 1;
-      margin-bottom: 1.5rem;
+    .service-img {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
-    .service-icon {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 1.5rem;
-      opacity: 0.6;
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .service-card:hover .service-img img { transform: scale(1.05); }
+
+    .service-num {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      line-height: 1;
+      letter-spacing: 0.05em;
+    }
+
+    .service-body {
+      padding: 2rem 2.5rem 2.5rem;
+      text-align: center;
+      flex: 1;
     }
 
     .service-title {
       font-family: 'Barlow', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 300;
+      font-size: 1.55rem;
+      font-weight: 500;
       color: var(--white);
       margin-bottom: 1rem;
     }
 
     .service-desc {
-      font-size: 0.8rem;
-      line-height: 1.8;
+      font-size: 0.82rem;
+      line-height: 1.85;
       color: var(--grey);
-    }
-
-    .service-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: opacity 0.3s, transform 0.3s;
-    }
-
-    .service-card:hover .service-arrow {
-      opacity: 1;
-      transform: translateX(0);
     }
 
     /* ── PROJECTS ── */
@@ -1317,40 +1320,34 @@
     </div>
     <div class="services-grid reveal">
       <div class="service-card">
-        <div class="service-num">01</div>
-        <div class="service-title">Construction ICF Polycrete</div>
-        <p class="service-desc">Nous érigerons vos murs en coffrage isolant Polycrete — polystyrène expansé et béton armé coulé sur place. Résultat : une enveloppe monolithique avec isolation intégrée R-22 à R-32, étanchéité à l'air de 1,26 ACH et résistance au feu de 4 à 6 heures.</p>
-        <span class="service-arrow">Découvrir →</span>
+        <div class="service-img">
+          <img src="photo-1.jpg" alt="Dalle monolithique Polycrete — isolation intégrée dans la dalle">
+          <div class="service-num">1.0</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title">Dalle monolithique</div>
+          <p class="service-desc">Vous isolez votre garage, votre sous-sol ou votre plancher sur sol ? La dalle monolithique avec panneaux Polycrete Systems intègre l'isolation directement dans la dalle — plus besoin d'étapes supplémentaires.</p>
+        </div>
       </div>
       <div class="service-card">
-        <div class="service-num">02</div>
-        <div class="service-title">Fondations ICF Résidentielles</div>
-        <p class="service-desc">Murs de fondation en ICF pour maisons unifamiliales et jumelées. Le polystyrène expansé reste en place comme isolation permanente intérieure et extérieure — fini les problèmes d'humidité, fini les pertes de chaleur au sous-sol.</p>
-        <span class="service-arrow">Découvrir →</span>
+        <div class="service-img">
+          <img src="photo-2.jpg" alt="Plancher de béton — coulage et finition résidentiel et commercial">
+          <div class="service-num">2.0</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title">Plancher de béton</div>
+          <p class="service-desc">Du coulage à la finition, votre plancher de béton est réalisé avec soin, qu'il soit résidentiel ou commercial. Un résultat solide, durable et livré dans les délais.</p>
+        </div>
       </div>
       <div class="service-card">
-        <div class="service-num">03</div>
-        <div class="service-title">Multi-logements &amp; Commercial ICF</div>
-        <p class="service-desc">L'ICF Polycrete est idéal pour les immeubles à appartements, condos, hôtels et bâtiments commerciaux. L'indice STC de 46 à 72 garantit un confort acoustique supérieur entre les unités, et les économies d'exploitation se calculent dès la première année.</p>
-        <span class="service-arrow">Découvrir →</span>
-      </div>
-      <div class="service-card">
-        <div class="service-num">04</div>
-        <div class="service-title">Réparation de Fondations</div>
-        <p class="service-desc">Diagnostic, injection de résine, reprise en sous-oeuvre et renforcement structurel pour fondations fissurées ou fragilisées par l'humidité. Notre connaissance du béton armé, forgée par des années d'ICF, s'applique directement à la réparation.</p>
-        <span class="service-arrow">Découvrir →</span>
-      </div>
-      <div class="service-card">
-        <div class="service-num">05</div>
-        <div class="service-title">Imperméabilisation &amp; Drain Français</div>
-        <p class="service-desc">Protection complète de l'enveloppe contre l'eau : membrane d'imperméabilisation extérieure, drainage périphérique et drain français installés selon les normes RBQ. Le complément naturel à nos fondations ICF, ou en travaux de rénovation.</p>
-        <span class="service-arrow">Découvrir →</span>
-      </div>
-      <div class="service-card">
-        <div class="service-num">06</div>
-        <div class="service-title">Conseil &amp; Devis ICF</div>
-        <p class="service-desc">Vous envisagez la construction ICF mais ne savez pas par où commencer ? Nous vous accompagnons de la conception au calcul thermique : analyse du site, sélection du système Polycrete, estimation des économies d'énergie projetées et soumission détaillée sans frais.</p>
-        <span class="service-arrow">Découvrir →</span>
+        <div class="service-img">
+          <img src="photo-3.jpg" alt="Murs de fondation ICF Polycrete — résidentiel, chalet, garage, multi-logement">
+          <div class="service-num">3.0</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title">Murs de fondation</div>
+          <p class="service-desc">Vos murs de fondation en coffrage isolant ICF sont coulés sur mesure selon les exigences de votre projet — maison, chalet, garage ou multi-logement. Une structure robuste, bien isolée, conçue pour durer dans le climat nordique.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1522,11 +1519,9 @@
       <div class="footer-col">
         <h4>Services</h4>
         <ul>
-          <li><a href="#">Construction ICF Polycrete</a></li>
-          <li><a href="#">Fondations ICF</a></li>
-          <li><a href="#">Multi-logements ICF</a></li>
-          <li><a href="#">Réparation de fondations</a></li>
-          <li><a href="#">Imperméabilisation</a></li>
+          <li><a href="#">Dalle monolithique</a></li>
+          <li><a href="#">Plancher de béton</a></li>
+          <li><a href="#">Murs de fondation</a></li>
         </ul>
       </div>
       <div class="footer-col">
