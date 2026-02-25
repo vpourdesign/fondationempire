@@ -281,22 +281,7 @@
 
     .nav-cta:hover { background: var(--gold); color: #ffffff; }
 
-    .nav-version-toggle {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text);
-      text-decoration: none;
-      opacity: 0.55;
-      border: 1px solid var(--border);
-      padding: 0.6rem 1.2rem;
-      transition: opacity 0.3s, border-color 0.3s;
-      white-space: nowrap;
-    }
-
-    .nav-version-toggle:hover { opacity: 0.9; border-color: var(--gold); color: var(--gold); }
-
-    /* ── HERO ── */
+/* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: grid;
@@ -1222,13 +1207,12 @@
   <nav>
     <img src="logo-fep.png" alt="Fondations Empire" class="nav-logo">
     <ul class="nav-links">
-      <li><a href="#">À propos</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Réalisations</a></li>
-      <li><a href="#">Polycrete</a></li>
+      <li><a href="#about">L'expertise</a></li>
+      <li><a href="#services">Nos services</a></li>
+      <li><a href="#process">Notre processus</a></li>
+      <li><a href="#contact">Soumission</a></li>
     </ul>
-    <a href="index.html" class="nav-version-toggle">☾ Dark version</a>
-    <a href="#contact" class="nav-cta">Nous contacter</a>
+    <a href="#contact" class="nav-cta">Obtenir une soumission</a>
   </nav>
 
   <!-- HERO -->
@@ -1244,8 +1228,7 @@
         Nous construisons des murs et fondations en ICF Polycrete — béton armé gainé de polystyrène expansé. R-22 à R-32, résistance au feu de 4 à 6 heures, économies d'énergie allant jusqu'à 60 %. La méthode qui redéfinit la construction au Québec.
       </p>
       <div class="hero-actions">
-        <a href="#services" class="btn-primary">Découvrir l'ICF Polycrete</a>
-        <a href="#projects" class="btn-ghost">Voir les réalisations</a>
+        <a href="#contact" class="btn-primary">Obtenir une soumission</a>
       </div>
     </div>
     <div class="scroll-hint"><span>Défiler</span></div>
@@ -1353,7 +1336,7 @@
   </section>
 
   <!-- PROCESS -->
-  <section class="process">
+  <section class="process" id="process">
     <div class="process-header reveal">
       <div class="section-label">Notre Approche</div>
       <h2>Un processus <em>éprouvé</em></h2>
@@ -1393,7 +1376,7 @@
         <div class="contact-details">
           <div class="contact-detail">
             <div class="contact-detail-icon">✆</div>
-            <span>514 123-4567</span>
+            <span>819-324-6081</span>
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon">@</div>
@@ -1401,7 +1384,7 @@
           </div>
           <div class="contact-detail">
             <div class="contact-detail-icon">⊙</div>
-            <span>Montréal &amp; partout au Québec</span>
+            <span>1098 rue de St-Jovite C.P.4381<br>Mont-Tremblant, Qc Canada J8E 1A1</span>
           </div>
         </div>
       </div>
@@ -1452,7 +1435,7 @@
       <h2>L'isolation permanente,<br>le béton qui <em>ne cède pas</em></h2>
     </div>
     <div class="cta-action">
-      <a href="#contact" class="btn-primary">Obtenir ma soumission ICF</a>
+      <a href="#contact" class="btn-primary">Obtenir une soumission</a>
     </div>
   </div>
 
@@ -1461,38 +1444,29 @@
     <div class="footer-top">
       <div class="footer-brand">
         <img src="logo-fep.png" alt="Fondations Empire" class="brand-name">
-        <p>Spécialiste certifié en construction ICF Polycrete depuis 1998. Basés à Montréal, nous réalisons des projets résidentiels et commerciaux partout au Québec.</p>
+        <p>Spécialiste certifié en construction ICF Polycrete depuis 1998. Nous réalisons des projets résidentiels et commerciaux partout au Québec.</p>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <h4>Navigation</h4>
         <ul>
-          <li><a href="#">Dalle monolithique</a></li>
-          <li><a href="#">Plancher de béton</a></li>
-          <li><a href="#">Murs de fondation</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Réalisations</a></li>
-          <li><a href="#">Témoignages</a></li>
-          <li><a href="#">Certifications</a></li>
+          <li><a href="#about">L'expertise</a></li>
+          <li><a href="#services">Nos services</a></li>
+          <li><a href="#process">Notre processus</a></li>
+          <li><a href="#contact">Soumission</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
         <ul>
-          <li><a href="#">Montréal, Québec</a></li>
-          <li><a href="tel:+15141234567">514 123-4567</a></li>
+          <li><a href="tel:+18193246081">819-324-6081</a></li>
           <li><a href="mailto:info@fondationsempire.com">info@fondationsempire.com</a></li>
-          <li><a href="#">Devis gratuit</a></li>
+          <li><a href="#contact" style="line-height:1.6;">1098 rue de St-Jovite C.P.4381<br>Mont-Tremblant, Qc J8E 1A1</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© 2026 Fondations Empire inc. Tous droits réservés.</p>
-      <p>Licence RBQ · Certifié Polycrete · Novoclimat · Montréal, Québec</p>
+      <p>Licence RBQ · Certifié Polycrete · Novoclimat · Mont-Tremblant, Québec</p>
     </div>
   </footer>
 
