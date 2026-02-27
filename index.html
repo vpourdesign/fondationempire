@@ -926,6 +926,38 @@
       color: var(--grey);
     }
 
+    /* ── ZONES ── */
+    .zones {
+      background: var(--dark);
+      text-align: center;
+    }
+
+    .zones-header {
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+
+    .zones-header .section-label { justify-content: center; }
+    .zones-header .section-label::before { display: none; }
+
+    .zones-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .zone-tag {
+      border: 1px solid rgba(184,146,46,0.3);
+      background: var(--gold-muted);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.8rem;
+      font-family: 'Barlow', sans-serif;
+    }
+
     /* ── CONTACT FORM ── */
     .contact-section {
       background: var(--dark);
@@ -1374,6 +1406,22 @@
         <div class="step-title">Inspection et garantie</div>
         <p class="step-desc">Contrôle qualité final et garantie écrite.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ZONES DESSERVIES -->
+  <section class="zones">
+    <div class="zones-header reveal">
+      <div class="section-label">Zones desservies</div>
+      <h2>Nous intervenons partout<br>dans les <em>Laurentides</em></h2>
+    </div>
+    <div class="zones-list reveal">
+      <span class="zone-tag">Mont-Tremblant</span>
+      <span class="zone-tag">St-Jérôme</span>
+      <span class="zone-tag">St-Sauveur</span>
+      <span class="zone-tag">St-Donat</span>
+      <span class="zone-tag">Laurentides</span>
+      <span class="zone-tag">Régions environnantes</span>
     </div>
   </section>
 
