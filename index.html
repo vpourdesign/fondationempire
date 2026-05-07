@@ -1036,6 +1036,23 @@
     /* ── PROCESS ── */
     .process {
       background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('round-house-crop-1.jpg') center / cover no-repeat;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .process > * {
+      position: relative;
+      z-index: 1;
     }
 
     .process-header {
