@@ -9,6 +9,9 @@
   <meta name="description" content="Spécialiste en fondations Système Polycrete à Sainte-Agathe-des-Monts, Sainte-Adèle, Val-David et Val-Morin. Isolation R-25 à R-29 pour le cœur des Laurentides. Soumission gratuite 24h." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="canonical" href="https://www.fondationsempire.com/sainte-agathe" />
+  <link rel="alternate" hreflang="fr-CA" href="https://www.fondationsempire.com/sainte-agathe" />
+  <link rel="alternate" hreflang="en-CA" href="https://www.fondationsempire.com/en/sainte-agathe" />
+  <link rel="alternate" hreflang="x-default" href="https://www.fondationsempire.com/sainte-agathe" />
   <meta name="keywords" content="fondation Sainte-Agathe-des-Monts, fondation Sainte-Adèle, fondation Val-David, fondation Val-Morin, Système Polycrete Laurentides, fondation isolante Sainte-Agathe, coffrage isolant Sainte-Adèle, ICF Val-David, fondation béton Val-Morin" />
 
   <!-- ═══ GÉO ══════════════════════════════════════════════════════════ -->
@@ -190,6 +193,18 @@
     }
 
     .nav-links a:hover { opacity: 1; color: var(--gold-light); }
+
+    /* Language switcher */
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+    }
+    .lang-switch a { padding: 0; }
+    .lang-switch a.active { color: var(--gold-light); opacity: 1; }
+    .lang-switch span { opacity: 0.4; color: #fff; }
 
     /* Dropdown */
     .nav-dropdown {
@@ -840,6 +855,7 @@
         </ul>
       </li>
       <li><a href="#contact">Soumission</a></li>
+      <li class="lang-switch"><a href="sainte-agathe.html" class="active">FR</a> <span>/</span> <a href="en/sainte-agathe.html">EN</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Obtenir une soumission</a>
   </nav>
